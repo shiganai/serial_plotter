@@ -107,7 +107,7 @@ class Plotter():
         self.lineRed, = self.ax.plot(self._x_data, data[0,:], 'r-')
         # adjust plot
         self.ax.set_xlim(0, 500)
-        self.ax.set_ylim(100000,200000)
+        self.ax.set_ylim(0,5)
         return self.lineRed,
 
     def update_plot(self, frame):
@@ -139,13 +139,13 @@ if __name__ == "__main__":
     logger.addHandler(stream_handler)
     logger.addHandler(file_handler)
 
-    port = "/dev/tty.usbmodem14201"
-    baudrate = 115200
+    port = "COM3"
+    baudrate = 9600
     ser = serial.Serial(port, baudrate, timeout=1)
 
     # we expect two values from serial port
     # ValueA,ValueB
-    n_values = 2 # expecting number of values in a line
+    n_values = 1 # expecting number of values in a line
     n_points = 500 # number of latest data points to hold
     # make numpy array to hold data
     arr = np.empty(n_values * n_points)
